@@ -8,30 +8,24 @@ for (let i = 0; i < SQUARE_NUMBERS; i++) {
     square.classList.add('square');
     board.append(square);
 
-    square.addEventListener('mouseover', () => {
-        console.log('mouseover');
-        setColor(square);
-    });
-
-    square.addEventListener('mouseleave', () => {
-        console.log('mouseleave');
-        removeColor(square);
-    });
+    square.addEventListener('mouseover', setColor);
+    square.addEventListener('mouseleave', removeColor);
 }
 
-function setColor(element) {
+function setColor(event) {
+    let element = event.target;
     const color = getRandomColor();
     element.style.backgroundColor = color;
     element.style.boxShadow = `0 0 2px ${color}, 0 0 9px ${color}`
 }
 
-function removeColor(element) {
+function removeColor(event) {
+    let element = event.target;
     element.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
     element.style.boxShadow = `0 0 5px #008`;
 }
 
 function getRandomColor() {
-    let index = Math.floor(Math.random() * colors.length);
-   return colors[index];
+   return colors[Math.floor(Math.random() * colors.length)];
 }
 
